@@ -31,6 +31,7 @@ Contents:
    testing_websockets
    script_reference
    cli_reference
+   debugging
 
 .. Indices and tables
 .. ==================
