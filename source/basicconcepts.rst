@@ -1,6 +1,22 @@
 Basic Concepts
 **************
 
+10,000 foot view
+----------------
+
+Artillery is a tool that you can use to run load-tests.
+
+You write your load-test scripts (as YAML files, with the option to write some JS for really advanced stuff) and tell Artillery to run them.
+
+Your load-test scripts have two main parts to them - config and scenarios.
+
+The **config** part is where you specify the target (such as a website address), the load progression (telling Artillery for example to create 20 virtual users every second for 10 minutes), and can set a variety of other options (such as HTTP timeout setting etc).
+
+The **scenarios** is where you define what virtual users will be doing.
+
+In a little more detail
+-----------------------
+
 Artillery's main purpose is to simulate realistic load on complex applications, and as such it works with the concepts of **virtual users**, that arrive to use the application in **phases**. Each users picks and runs one of the pre-defined **scenarios**, which describe a sequence of actions (HTTP requests, WebSocket messages etc) that exercise a particular part of the application or simulate a common flow through the application.
 
 **Example**: a test for an e-commerce API might define one scenario:
