@@ -2,7 +2,10 @@ machine:
   python:
     version: 2.7.5
 dependencies:
+  cache_directories:
+    - "~/.apt-cache"
   pre:
+    - sudo rm -rf /var/cache/apt/archives && sudo ln -s ~/.apt-cache /var/cache/apt/archives && mkdir -p ~/.apt-cache/partial
     - sudo apt-get update; sudo apt-get install s3cmd python-sphinx
     - pip install sphinx_rtd_theme
 test:
