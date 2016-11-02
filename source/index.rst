@@ -1,7 +1,9 @@
 Welcome to the Artillery documentation!
 =======================================
 
-Artillery is a simple but powerful load-generator that you can use to make your applications more resilient and more performant under high load. It scales up from running tests on your development laptop to running massive-scale tests from the cloud with the exact same workflow.
+Artillery is a simple but powerful load testing toolkit. You can use it to make your application perform better under high load. Use Artillery to make your application **faster**, more **scalable**, and more **resilient**.
+
+You can use Artillery to run tests on your dev laptop. Once you're ready to scale up your tests or run them on a schedule, Artillery can be set up on AWS or GCE. `Artillery Cloud <https://artillery.io/cloud>`_ is also available for teams that want an instant-on managed solution.
 
 If you're new to Artillery, `Getting Started <gettingstarted.html>`_ is a good place to start, followed by checking out some `Examples <examples.html>`_ and an overview of `how Artillery works <basicconcepts.html>`_. Then when you're writing your tests, the various references (`HTTP <testing_http.html>`_, `Socket.io <testing_socketio.html>`_, `WebSockets <testing_websockets.html>`_, the `CLI <cli_reference.html>`_) may come in handy.
 
