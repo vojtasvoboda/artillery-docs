@@ -26,5 +26,5 @@ then
   exit 1
 else
   echo "***** Syncing"
-  s3cmd --delete-removed --force sync . "s3://$AWS_S3_BUCKET/docs/"
+  s3cmd --access_key="$AWS_ACCESS_KEY_ID" --secret_key="$AWS_SECRET_ACCESS_KEY" --delete-removed --force sync . "s3://$AWS_S3_BUCKET/docs/"
 fi
