@@ -1,0 +1,15 @@
+machine:
+  python:
+    version: 2.7.5
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install s3cmd python-sphinx
+    - pip install sphinx_rtd_theme
+test:
+  override:
+    - make html
+deployment:
+  production:
+    branch: master
+    commands:
+      - bash scripts/deploy.sh
