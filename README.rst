@@ -16,6 +16,11 @@ Building locally
 3. Run ``make html``
 4. Open ``build/html/index.html`` in your browser.
 
+Deployment
+##########
+
+``master`` is automatically deployed to `https://artillery.io/docs <https://artillery.io/docs>`_.
+
 License
 #######
 
