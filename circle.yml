@@ -12,4 +12,5 @@ deployment:
   production:
     branch: master
     commands:
+      - cp .s3cfg ~/.s3cfg
       - bash scripts/deploy.sh
