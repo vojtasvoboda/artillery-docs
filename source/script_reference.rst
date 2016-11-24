@@ -25,7 +25,7 @@ A phase is a period of the load test that can be named and have timing parameter
 ``config.phases`` is an array of phase definitions that Artillery goes through sequentially. Three kinds of phases are supported:
 
 - ``arrivalRate`` - specify the arrival rate of virtual users for a duration of time.
-  - A linear "ramp" in arrival can be also be created with the ``rampTo`` option
+  - A linear "ramp" in arrival can be also be created with the ``rampTo`` option (always from a smaller to a larger arrival rate).
 - ``arrivalCount`` - specify the number of users to create over a period of time.
 - ``pause`` - pause and do nothing for a duration of time.
 
@@ -77,6 +77,27 @@ Putting it all together:
         // scenario definitions
       ]
     }
+    
+How Do Ramps Work?
+++++++++++++++++++
+
+Think of a `rampTo` as a shortcut to manually writing out a sequence of arrival phases, i.e. the following ramp:
+::
+
+    {
+        "duration": 100,
+        "arrivalRate": 0,
+        "rampTo": 50
+    }
+
+is equivalent to:
+::
+
+  { arrivalRate: 0, duration: 1.96 },
+  { arrivalRate: 1, duration: 1.96 },
+  { arrivalRate: 2, duration: 1.96 },
+  // ... etc
+  { arrivalRate: 50, duration: 2 }
 
 
 Environments
