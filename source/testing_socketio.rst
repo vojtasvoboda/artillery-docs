@@ -14,8 +14,12 @@ The ``emit`` action supports the following attributes:
 2. ``data`` - the data to emit
 3. ``response`` - optional object if you want to wait for a response:
 
-   - ``channel`` - the name of the channel where the response is received
+   - ``channel`` - the name of the channel where the response is received.
    - ``data`` - the data to verify is in the response
+4. ``namespace`` - optional namespace that this action executes in
+
+**Note:**
+If you emit to a specific namespace, the response data is expected within the same namespace.
 
 An example
 ~~~~~~~~~~
@@ -30,6 +34,10 @@ An example
           {"emit": { "channel": "echo", "data": "do not care about the response" }},
           {"emit": { "channel": "echo", "data": "still do not care about the response" }},
           {"think": 1}
+          {"emit": { "channel": "echo", "data": "emit data to namespace /nsp1", "namespace" : "/nsp1" }},
+          {"emit": { "channel": "echo", "data": "emit data to namespace /nsp2", "namespace" : "/nsp2" }},
+          {"think": 1}
+          {"emit": { "channel": "echo", "data": "hello", "namespace" : "/nsp1", response": { "channel": "echoed", "data": "hello in /nsp1"} }},
         ]
   }
 
