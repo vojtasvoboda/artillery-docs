@@ -23,6 +23,14 @@ Set ``DEBUG`` to:
 Multiple settings can be combined, for example:
 ::
   DEBUG=http,http:response artillery run my-script.yaml
+  
+Printing to the console
+-----------------------
+
+Use the ``log`` action to print to the console from your scenarios:
+::
+    
+    {"log": "Captured token is: {{ token }}"}
 
 Debugging Socket.io scenarios
 #############################
