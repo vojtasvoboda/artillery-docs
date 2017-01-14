@@ -13,6 +13,19 @@ Each object in the ``flow`` array contains one key representing the HTTP method 
 - ``cookie`` - a JSON object describing cookie key-value pairs
 - ``capture`` - use this to capture values from the response body of a request and store those in variables
 
+Logging
+#######
+
+Debug messages can be logged with the ``log`` action:
+::
+
+    {"log": "hello world!"}
+    
+The string argument to ``log`` may include variables:
+::
+
+    {"log": "Current environment is set to: {{ $environment }}"}
+
 GET / POST / PUT / DELETE
 #########################
 
