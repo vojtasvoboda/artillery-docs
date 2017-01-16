@@ -387,7 +387,7 @@ Where:
 - ``requestParams`` is an object given to the `Request <https://github.com/request/request>`_ library. Use this parameter to customize what is sent in the request (headers, body, cookies etc)
 - ``context`` is the virtual user's context, ``context.vars`` is a dictionary containing all defined variables
 - ``ee`` is an event emitter that can be used to communicate with Artillery
-- ``next`` is the callback which must be called for the scenario to continue; it takes no arguments
+- ``next`` is the callback which *must* be called for the scenario to continue; it takes no arguments
 
 ``afterResponse``
 +++++++++++++++++
