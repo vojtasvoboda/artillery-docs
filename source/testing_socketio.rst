@@ -33,11 +33,11 @@ An example
           {"think": 1},
           {"emit": { "channel": "echo", "data": "do not care about the response" }},
           {"emit": { "channel": "echo", "data": "still do not care about the response" }},
-          {"think": 1}
+          {"think": 1},
           {"emit": { "channel": "echo", "data": "emit data to namespace /nsp1", "namespace" : "/nsp1" }},
           {"emit": { "channel": "echo", "data": "emit data to namespace /nsp2", "namespace" : "/nsp2" }},
-          {"think": 1}
-          {"emit": { "channel": "echo", "data": "hello", "namespace" : "/nsp1", response": { "channel": "echoed", "data": "hello in /nsp1"} }},
+          {"think": 1},
+          {"emit": { "channel": "echo", "data": "hello", "namespace" : "/nsp1", "response": { "channel": "echoed", "data": "hello in /nsp1"} }}
         ]
   }
 
