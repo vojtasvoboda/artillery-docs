@@ -12,27 +12,27 @@ Example
 
 ::
 
-    {
-      "config": {
-          "target": "wss://echo.websocket.org",
-          "phases": [
-            {"duration": 20, "arrivalRate": 10}
-          ],
-          "ws": {
-            "rejectUnauthorized": false // Ignore SSL certificate errors - can be useful in *development* with self-signed certs
-          }
-      },
-      "scenarios": [
-        {
-          "engine": "ws",
-          "flow": [
-            {"send": "hello"},
-            {"think": 1},
-            {"send": "world"}
-          ]
-        }
-      ]
-    }
+  config:
+    target: "wss://echo.websocket.org"
+    phases:
+      -
+        duration: 20
+        arrivalRate: 10
+    ws:
+      # Ignore SSL certificate errors
+      # - useful in *development* with self-signed certs
+      rejectUnauthorized: false
+  scenarios:
+    -
+      engine: "ws"
+      flow:
+        -
+          send: "hello"
+        -
+          think: 1
+        -
+          send: "world"
+
 
 Inline variables, variables from CSV files can be used just like in an `HTTP scenario <testing_http.html>`_.
 
