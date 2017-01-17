@@ -19,12 +19,14 @@ Logging
 Debug messages can be logged with the ``log`` action:
 ::
 
-    {"log": "hello world!"}
+  log: "hello world!"
+
     
 The string argument to ``log`` may include variables:
 ::
 
-    {"log": "Current environment is set to: {{ $environment }}"}
+  log: "Current environment is set to: {{ $environment }}"
+
 
 GET / POST / PUT / DELETE
 #########################
@@ -32,27 +34,27 @@ GET / POST / PUT / DELETE
 Send a GET request:
 ::
 
-    {"get": {"url": "/test"}}
+  get:
+    url: "/test"
+
 
 POST some JSON:
 ::
 
-    {"post":
-      {
-        "url": "/test",
-        "json": {"name": "Hassy", "occupation": "software developer"}
-      }
-    }
+  post:
+    url: "/test"
+    json:
+      name: "Hassy"
+      occupation: "software developer"
+
 
 POST arbitrary data:
 ::
 
-    {"post":
-      {
-        "url": "/test",
-        "body": "name=hassy&occupation=software%20developer"
-      }
-    }
+  post:
+    url: "/test"
+    body: "name=hassy&occupation=software%20developer"
+
 
 Set headers
 ###########
@@ -60,14 +62,11 @@ Set headers
 You can set headers like this:
 ::
 
-    {"get":
-      {
-        "url": "/test",
-        "headers": {
-          "X-My-Header": "123"
-        }
-      }
-    }
+  get:
+    url: "/test"
+    headers:
+      X-My-Header: "123"
+
 
 Extract and reuse parts of a response (request chaining)
 ########################################################
@@ -80,14 +79,12 @@ Syntax
 To tell Artillery to parse a response, add a ``capture`` attribute to any request spec like so:
 ::
 
-    {"get": {
-      "url": "/",
-      "capture": {
-        "json": "$.id",
-        "as": "id"
-        }
-      }
-    }
+  get:
+    url: "/"
+    capture:
+      json: "$.id"
+      as: "id"
+
 
 The ``capture`` element must always have an ``as`` attribute which names the value for use in subsequent requests, and one of:
 
@@ -100,16 +97,13 @@ The ``capture`` element must always have an ``as`` attribute which names the val
 Optionally, it can also contain a ``transform`` attribute, which should be a snippet of JS code (as a string) transforming the value after it has been extracted from the response:
 ::
 
-    {"get":
-      {
-        "url": "/journeys",
-        "capture": {
-          "xpath": "(//Journey)[1]/JourneyId/text()",
-          "transform": "this.JourneyId.toUpperCase()",
-          "as": "JourneyId"
-        }
-      }
-    }
+  get:
+    url: "/journeys"
+    capture:
+      xpath: "(//Journey)[1]/JourneyId/text()"
+      transform: "this.JourneyId.toUpperCase()"
+      as: "JourneyId"
+
 
 Where ``this`` refers to the *context* of the virtual user running the scenario, i.e. an object containing all currently defined variables, including the one that has just been extracted from the response.
 
@@ -120,19 +114,17 @@ Multiple values can be captured with an array of capture specs, e.g.:
 
 ::
 
-    {"get":
-      {
-        "url": "/journeys",
-        "capture": [{
-          "xpath": "(//Journey)[1]/JourneyId/text()",
-          "transform": "this.JourneyId.toUpperCase()",
-          "as": "JourneyId"
-        }, {
-          "header": "x-my-custom-header",
-          "as": "headerValue"
-        }]
-      }
-    }
+  get:
+    url: "/journeys"
+    capture:
+      -
+        xpath: "(//Journey)[1]/JourneyId/text()"
+        transform: "this.JourneyId.toUpperCase()"
+        as: "JourneyId"
+      -
+        header: "x-my-custom-header"
+        as: "headerValue"
+
 
 An example
 ~~~~~~~~~~
@@ -140,36 +132,39 @@ An example
 In the following example, we POST to ``/pets`` to create a new resource, capture part of the response (the id of the new resource) and store it in the variable ``id``. We then use that value in the subsequent request to load the resource and to check to see if the resource we get back looks right.
 ::
 
-    {"post":
-      {
-        "url": "/pets",
-        "json": {"name": "Mali", "species": "dog"},
-        "capture": {"json": "$.id", "as": "id"}
-      }
-    },
-    {"get":
-      {
-        "url": "/pets/{{ id }}",
-        "match": {"json": "$.name", "value": "{{ name }}"}
-      }
-    }
+  -
+    post:
+      url: "/pets"
+      json:
+        name: "Mali"
+        species: "dog"
+      capture:
+        json: "$.id"
+        as: "id"
+  -
+    get:
+      url: "/pets/{{ id }}"
+      match:
+        json: "$.name"
+        value: "{{ name }}"
 
 By default, every response body is captured in the variable ``$``, so the
 example above could also be rewritten as:
 ::
 
-    {"post":
-      {
-        "url": "/pets",
-        "json": {"name": "Mali", "species": "dog"}
-      }
-    },
-    {"get":
-      {
-        "url": "/pets/{{ $.id }}",
-        "match": {"json": "$.name", "value": "{{ name }}"}
-      }
-    }
+  -
+    post:
+      url: "/pets"
+      json:
+        name: "Mali"
+        species: "dog"
+  -
+    get:
+      url: "/pets/{{ $.id }}"
+      match:
+        json: "$.name"
+        value: "{{ name }}"
+
 
 Cookies
 #######
@@ -177,14 +172,11 @@ Cookies
 Cookies are remembered and re-used by individual virtual users. Custom cookies can be specified with ``cookie`` attribute in individual requests.
 ::
 
-    {"get":
-      {
-        "url": "/pets/",
-        "cookie": {
-          "saved": "tapir,sloth"
-        }
-      }
-    }
+  get:
+    url: "/pets/"
+    cookie:
+      saved: "tapir,sloth"
+
 
 SSL
 ###
@@ -196,18 +188,14 @@ By default, Artillery will reject self-signed certificates. You can disable this
 
 ::
 
-    {
-      "config": {
-        "target": "https://myapp.staging:3002",
-        "tls": {
-          "rejectUnauthorized": false
-        }
-        // ...
-      },
-      "scenarios": [
-        // ...
-      ]
-    }
+  config:
+    target: "https://myapp.staging:3002"
+    tls:
+      rejectUnauthorized: false
+  scenarios:
+    -
+      ...
+
 
 Inline variables
 ################
@@ -215,16 +203,23 @@ Inline variables
 Variables can defined in the ``config.variables`` section of a script and used in subsequent request templates.
 ::
 
-    {
-      "config": {
-        "target": "http://app01.local.dev",
-        "phases": [ {"duration": 300, "arrivalRate": 25} ],
-        "variables": {
-          "postcode": ["SE1", "EC1", "E8", "WH9"],
-          "id": ["8731", "9965", "2806"]
-        }
-      }
-    }
+  config:
+    target: "http://app01.local.dev"
+    phases:
+      -
+        duration: 300
+        arrivalRate: 25
+    variables:
+      postcode:
+        - "SE1"
+        - "EC1"
+        - "E8"
+        - "WH9"
+      id:
+        - "8731"
+        - "9965"
+        - "2806"
+
 
 The variables can then be used in templates as normal. For example: ``{{ id }}`` and ``{{ postcode }}``.
 
@@ -249,20 +244,24 @@ Take this CSV file for example:
 Add ``payload`` to config:
 ::
 
-    {
-      "config": {
-        "payload": {
-          "fields": ["species", "name"]
-        }
-      }
-    }
+  config:
+    payload:
+      fields:
+        - "species"
+        - "name"
+
 
 This will make ``species`` and ``name`` variables available in scenario definitions.
 
 Use those variables in your scenarios:
 ::
 
-    { "post": {"url": "/pets", "json": { "name": "{{ name }}", "species": "{{ species }}" }} }
+  post:
+    url: "/pets"
+    json:
+      name: "{{ name }}"
+      species: "{{ species }}"
+
 
 Then tell ``artillery`` to use the payload file:
 ::
@@ -275,26 +274,21 @@ Loop through a number of requests
 You can use the ``loop`` construct to loop through a number of requests in a scenario. For example, each virtual user will send 100 ``GET`` requests to ``/`` with this scenario:
 ::
 
-    {
-      "config": {
-        // config here
-      },
-      "scenarios": [
-        {
-          "flow": [
-            {
-              "loop": [
-                {"get": {"url": "/"}}
-              ],
-              "count": 100
-            }
-          ]
-        }
-      ]
-    }
+  config:
+    # ... config here ...
+  scenarios:
+    -
+      flow:
+        -
+          loop:
+            -
+              get:
+                url: "/"
+          count: 100
 
 
-If count is omitted, the loop will run indefinitely.
+
+If count is omitted, the loop will run *indefinitely*.
 
 ``loop`` is an array - any number of requests can be specified. Variables, cookie and response parsing will work as expected.
 
@@ -314,13 +308,12 @@ Specifying a function to run
 ``beforeRequest`` and ``afterResponse`` hooks can be set in a request spec like this:
 ::
 
-  // ... a request in a scenario definition:
-  {"post":
-    {"url": "/some/route",
-      "beforeRequest": "setJSONBody",
-      "afterResponse": "logHeaders"
-    }
-  }
+  # ... a request in a scenario definition:
+  post:
+    url: "/some/route"
+    beforeRequest: "setJSONBody"
+    afterResponse: "logHeaders"
+
 
 This tells Artillery to run the ``setJSONBody`` function before the request is made, and to run the ``logHeaders`` function after the response has been received.
 
@@ -340,16 +333,17 @@ Loading custom JS code
 To tell Artillery to load your custom code, set ``config.processor`` to path to your JS file:
 ::
 
-  {
-    "config": {
-      "target": "https://my.app.dev",
-      "phases": [{"duration": 300, "arrivalRate": 1}],
-      "processor": "./my-functions.js"
-    },
-    "scenarios": [
-      // scenarios definitions here...
-    ]
-  }
+  config:
+    target: "https://my.app.dev"
+    phases:
+      -
+        duration: 300
+        arrivalRate: 1
+    processor: "./my-functions.js"
+  scenarios:
+    -
+      # ... scenarios definitions here ...
+
 
 The JS file is expected to be a standard Node.js module:
 ::
