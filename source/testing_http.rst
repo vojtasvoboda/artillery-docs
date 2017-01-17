@@ -294,7 +294,7 @@ You can use the ``loop`` construct to loop through a number of requests in a sce
     }
 
 
-If count is omitted, the loop will run indefinitely.
+If count is omitted, the loop will run *indefinitely*.
 
 ``loop`` is an array - any number of requests can be specified. Variables, cookie and response parsing will work as expected.
 
