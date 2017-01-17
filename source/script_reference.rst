@@ -34,49 +34,66 @@ A phase is a period of the load test that can be named and have timing parameter
 Create 50 virtual users every second (on average) for 5 minutes:
 ::
 
-    { "duration": 300, "arrivalRate": 50 }
+  duration: 300
+  arrivalRate: 50
+
 
 Ramp up arrival rate from 10 to 50 over 2 minutes:
 ::
 
-    { "duration": 120, "arrivalRate": 10, "rampTo": 50 }
+  duration: 120
+  arrivalRate: 10
+  rampTo: 50
+
 
 
 Create 20 virtual users in 60 seconds (one every 3 seconds on average)
 ::
 
-    { "duration": 60, "arrivalCount": 20 }
+  duration: 60
+  arrivalCount: 20
+
 
 
 Pause for 10 seconds between arrival phases:
 ::
 
-    { "pause": 10 }
+
+  pause: 10
+
 
 
 Arrival phases can be named, for example:
 ::
 
-    { "duration": 180, "arrivalRate": 10, "name": "Warm-up" }
+  duration: 180
+  arrivalRate: 10
+  name: "Warm-up"
+
 
 
 Putting it all together:
 ::
 
-    {
-      "config": {
-        "target": "http://myapp.staging.local",
-        "phases": [
-          {"duration": 300, "arrivalRate": 5, "name": "Warm-up"},
-          {"pause": 10},
-          {"duration": 60, "arrivalCount": 30 },
-          {"duration": 600, "arrivalRate": 50, "name": "High load phase"}
-        ]
-      },
-      "scenarios": [
-        // scenario definitions
-      ]
-    }
+  config:
+    target: "http://myapp.staging.local"
+    phases:
+      -
+        duration: 300
+        arrivalRate: 5
+        name: "Warm-up"
+      -
+        pause: 10
+      -
+        duration: 60
+        arrivalCount: 30
+      -
+        duration: 600
+        arrivalRate: 50
+        name: "High load phase"
+  scenarios:
+    # scenario definitions
+
     
 How Do Ramps Work?
 ++++++++++++++++++
@@ -84,20 +101,29 @@ How Do Ramps Work?
 Think of a `rampTo` as a shortcut to manually writing out a sequence of arrival phases, i.e. the following ramp:
 ::
 
-    {
-        "duration": 100,
-        "arrivalRate": 0,
-        "rampTo": 50
-    }
+  duration: 100
+  arrivalRate: 0
+  rampTo: 50
+
 
 is equivalent to:
 ::
 
-  { arrivalRate: 0, duration: 1.96 },
-  { arrivalRate: 1, duration: 1.96 },
-  { arrivalRate: 2, duration: 1.96 },
-  // ... etc
-  { arrivalRate: 50, duration: 2 }
+  -
+    arrivalRate: 0
+    duration: 1.96
+  -
+    arrivalRate: 1
+    duration: 1.96
+  -
+    arrivalRate: 2
+    duration: 1.96
+  -
+     ... etc ...
+  -
+    arrivalRate: 50
+    duration: 2
+
 
 
 Environments
@@ -106,26 +132,24 @@ Environments
 You can specify a number of named environments with associated configuration. E.g.:
 ::
 
-    {
-      "config": {
-          "target": "http://wontresolve.local:3003",
-          "phases": [
-            {"duration": 10, "arrivalRate": 1}
-          ],
-          "environments": {
-            "production": {
-              "target": "http://wontresolve.prod:44321"
-            },
-            "staging": {
-              "target": "http://127.0.0.1:3003",
-              "phases": [
-                {"duration": 20, "arrivalRate": 1}
-              ]
-            }
-          }
-      },
-      "scenarios": [
-         ...
+  config:
+    target: "http://wontresolve.local:3003"
+    phases:
+      -
+        duration: 10
+        arrivalRate: 1
+    environments:
+      production:
+        target: "http://wontresolve.prod:44321"
+      staging:
+        target: "http://127.0.0.1:3003"
+        phases:
+          -
+            duration: 20
+            arrivalRate: 1
+  scenarios:
+    - ...
+
 
 Choose an environment on the command line with the ``-e`` argument; e.g. ``-e staging``.
 
@@ -137,43 +161,37 @@ In some cases it is useful to be able to inject data from external files into yo
 Payload files are in the CSV format and Artillery allows you to map each of the rows to a variable name that can be used in scenario definitions. For example:
 ::
 
-    {
-      "config": {
-        // other config...
-        "payload": {
-          "path": "users.csv", // path is relative to the location of the test script
-          "fields": ["username", "password"]
-        }
-      },
-      "scenarios": [
-        {
-          "post": {
-          "url": "/auth",
-          "json": {
-            "username": "{{ username }}",
-            "password": "{{ password }}"
-          }
-         }
-        }
-      ]
-    }
+  config:
+    payload:
+      # path is relative to the location of the test script
+      path: "users.csv"
+      fields:
+        - "username"
+        - "password"
+  scenarios:
+    -
+      post:
+        url: "/auth"
+        json:
+          username: "{{ username }}"
+          password: "{{ password }}"
+
 
 
 To use multiple CSV files ``"payload"`` can also be an an array:
 
 ::
+  payload:
+    -
+      path: "./pets.csv"
+      fields:
+        - "species"
+        - "name"
+    -
+      path: "./urls.csv"
+      fields:
+        - "url"
 
-    "payload": [
-      {
-        "path": "./pets.csv",
-        "fields": ["species", "name"]
-      },
-      {
-        "path": "./urls.csv",
-        "fields": ["url"]
-      }
-    ]
-    
 
 Ordering
 --------
@@ -181,17 +199,17 @@ Ordering
 Rows from the CSV file are picked *at random* by default. To iterate through the rows in sequence (looping around and starting from the beginning after the last row has been reached), set the ``"order"`` attribute to ``"sequence"``:
 ::
 
-    {
-      "config": {
-        // other config...
-        "payload": {
-          "path": "users.csv", // path is relative to the location of the test script
-          "fields": ["username", "password"],
-          "order": "sequence"
-        }
-      },
-      "scenarios": [
-        // rest of the script
+  config:
+    payload:
+      path: "users.csv"
+      fields:
+        - "username"
+        - "password"
+      order: "sequence"
+  scenarios:
+    -
+      # ... rest of the script
+
 
 ``scenarios``
 #############
@@ -227,6 +245,7 @@ A "flow" is an array of operations that a virtual user performs, e.g. GET and PO
 You can use a ``think`` step in a flow to pause the execution of the scenario for N seconds, e.g.:
 ::
 
-    { "think": 1 }
+  think: 1
+
 
 will pause for 1 second before continuing with the next request.
