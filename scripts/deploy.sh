@@ -1,22 +1,10 @@
 #!/bin/bash
 
-if [[ -z "$AWS_SECRET_ACCESS_KEY" ]]
-then
-  echo "***** AWS_SECRET_ACCESS_KEY not set - needed to auth with AWS"
-  exit 1
-fi
+set -euxo pipefail
 
-if [[ -z "$AWS_ACCESS_KEY_ID" ]]
-then
-  echo "***** AWS_ACCESS_KEY_ID not set - needed to auth with AWS"
-  exit 1
-fi
-
-if [[ -z "$AWS_S3_BUCKET" ]]
-then
-  echo "***** AWS_S3_BUCKET not set - needed to upload files to"
-  exit 1
-fi
+: "${AWS_ACCESS_KEY_ID?Needed to auth with AWS}"
+: "${AWS_SECRET_ACCESS_KEY?Needed to auth with AWS}"
+: "${AWS_S3_BUCKET?Need to know where files should go}"
 
 pushd build/html
 
