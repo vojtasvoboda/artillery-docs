@@ -1,6 +1,42 @@
 Testing HTTP
 ************
 
+HTTP-specific configuration
+###########################
+
+TLS/SSL
+-------
+
+Artillery will reject self-signed TLS certificates by default. To turn off verification set ``config.http.rejectUnauthorized`` to ``false``.
+
+Request timeout
+---------------
+
+If a response takes longer than 120 seconds Artillery will abort the request and report an ``ETIMEDOUT`` error.
+
+To increase or decrease the default timeout set ``config.http.timeout`` to a number (in seconds).
+::
+
+  config:
+    target: "http://my.app"
+    http:
+      timeout: 10 # Responses will now have to be sent within 10 seconds or the request will be aborted
+
+
+Fixed connection pool
+---------------------
+
+By default Artillery will open a new connection for each new virtual user. To open and re-use a fixed number of connections instead, set `config.http.pool` to a number:
+::
+
+  config:
+    target: "http://my.app"
+    http:
+      pool: 10 # All HTTP requests from all virtual users will be sent over the same 10 connections
+
+This can be useful to emulate the conditions when the target would normally be behind a load-balancer and would have a fixed number of connections established at any given time.
+
+
 Actions
 #######
 
@@ -178,20 +214,21 @@ Cookies are remembered and re-used by individual virtual users. Custom cookies c
       saved: "tapir,sloth"
 
 
-SSL
-###
+TLS/SSL
+#######
 
 By default, Artillery will reject self-signed certificates. You can disable this behavior (for testing in a staging environment for example):
 
 - Pass ``-k`` (or ``--insecure``) option to ``artillery run`` or ``artillery quick``
-- By setting the ``config.tls`` property in your test script like so:
+- By setting the ``config.http.tls`` property in your test script like so:
 
 ::
 
   config:
     target: "https://myapp.staging:3002"
-    tls:
-      rejectUnauthorized: false
+    http:
+      tls:
+        rejectUnauthorized: false
   scenarios:
     -
       ...
