@@ -24,6 +24,8 @@ Deployment
 License
 #######
 
+Text content under `source` is distributed under the terms of the **CC0 1.0 Universal** license (see `LICENSE <LICENSE>`_ for details); the rest of the contents of this repo is distributed under the terms of the **MIT** license.
+
 ::
 
   The MIT License (MIT)
