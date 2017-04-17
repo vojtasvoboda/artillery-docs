@@ -9,6 +9,7 @@ dependencies:
   pre:
     - sudo rm -rf /var/cache/apt/archives && sudo ln -s ~/.apt-cache /var/cache/apt/archives && mkdir -p ~/.apt-cache/partial
     - pip install sphinx
+    - pip install guzzle_sphinx_theme
     - pip install s3cmd
 test:
   override:

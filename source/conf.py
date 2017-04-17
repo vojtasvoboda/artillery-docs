@@ -15,6 +15,8 @@
 import sys
 import os
 
+import guzzle_sphinx_theme
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -107,9 +109,14 @@ todo_include_todos = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'alabaster'
+html_theme_path = guzzle_sphinx_theme.html_theme_path()
+html_theme = 'guzzle_sphinx_theme'
 html_theme_options = {
+    "project_nav_name": "Artillery.io",
+    "projectlink": "https://artillery.io"
 }
+extensions.append("guzzle_sphinx_theme")
+
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
