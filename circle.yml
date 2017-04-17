@@ -8,7 +8,7 @@ dependencies:
     - "~/.apt-cache"
   pre:
     - sudo rm -rf /var/cache/apt/archives && sudo ln -s ~/.apt-cache /var/cache/apt/archives && mkdir -p ~/.apt-cache/partial
-    - sudo apt-get update; sudo apt-get install python-sphinx
+    - pip install sphinx
     - pip install s3cmd
 test:
   override:
