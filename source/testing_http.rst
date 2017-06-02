@@ -7,7 +7,7 @@ HTTP-specific configuration
 TLS/SSL
 -------
 
-Artillery will reject self-signed TLS certificates by default. To turn off verification set ``config.http.rejectUnauthorized`` to ``false``.
+Artillery will reject self-signed TLS certificates by default. To turn off verification set ``config.tls.rejectUnauthorized`` to ``false``.
 
 Request timeout
 ---------------
