@@ -436,4 +436,33 @@ Where:
 - ``ee`` is an event emitter that can be used to communicate with Artillery
 - ``next`` is the callback which must be called for the scenario to continue; it takes no arguments
 
+The ``function`` action
+~~~~~~~~~~~~~~~~~~~~~~~
 
+In addition to request and scenario hooks, custom functions can be called as steps in a scenario with the ``function`` action.
+::
+    config:
+      #
+      # configuration section
+      #
+    scenarios:
+      - name: "My scenario"
+        flow:
+          - get:
+              url: "/"
+          - function: "acquireToken"
+          - post:
+              url: "/protected/endpont"
+              json:
+                token: "{{ token }}" # token variable created in the custom function
+                
+A function invoked in a ``function`` action should have the following signature:
+::
+  function myFunction(context, ee, next) {
+  }
+
+Where:
+
+- ``context`` is the virtual user's context, ``context.vars`` is a dictionary containing all defined variables
+- ``ee`` is an event emitter that can be used to communicate with Artillery
+- ``next`` is the callback which must be called for the scenario to continue; it takes no arguments
