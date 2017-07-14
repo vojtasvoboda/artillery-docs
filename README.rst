@@ -27,13 +27,13 @@ Formatting
 Sections
 --------
 
-RST [does not enforce a specific syntax for headings](http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#sections). The ones that should be used throughout the docs in this repo are:
-
-1. h1 - `*************`
-2. h2 - `#############`
-3. h3 - `-------------`
-4. h4 - `%%%%%%%%%%%%%`
-5. h5 - `+++++++++++++`
+RST `does not enforce a specific syntax for headings <http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#sections>`_. The ones that should be used throughout the docs in this repo are:
+::
+    h1 - *************
+    h2 - #############
+    h3 - -------------
+    h4 - %%%%%%%%%%%%%
+    h5 - +++++++++++++
 
 License
 #######
