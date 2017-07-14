@@ -110,7 +110,7 @@ Extract and reuse parts of a response (request chaining)
 You can parse responses and reuse those values in subsequent requests.
 
 Syntax
-~~~~~~
+------
 
 To tell Artillery to parse a response, add a ``capture`` attribute to any request spec like so:
 ::
@@ -163,7 +163,7 @@ Multiple values can be captured with an array of capture specs, e.g.:
 
 
 An example
-~~~~~~~~~~
+%%%%%%%%%%
 
 In the following example, we POST to ``/pets`` to create a new resource, capture part of the response (the id of the new resource) and store it in the variable ``id``. We then use that value in the subsequent request to load the resource and to check to see if the resource we get back looks right.
 ::
@@ -340,7 +340,7 @@ The HTTP engine has support for "hooks", which allow for custom JS functions to 
 - ``afterResponse`` - called after a response has been received; the response can be inspected and custom variables can be set here
 
 Specifying a function to run
-~~~~~~~~~~~~~~~~~~
+----------------------------
 
 ``beforeRequest`` and ``afterResponse`` hooks can be set in a request spec like this:
 ::
@@ -355,17 +355,17 @@ Specifying a function to run
 This tells Artillery to run the ``setJSONBody`` function before the request is made, and to run the ``logHeaders`` function after the response has been received.
 
 Specifying multiple functions
-~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 An array of function names can be specified too, in which case the functions will be run one after another.
 
 Setting scenario-level hooks
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 Similarly, a scenario definition can have a ``beforeRequest``/``afterResponse`` attribute, which will make the functions specified run for every request in the scenario.
 
 Loading custom JS code
-~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 To tell Artillery to load your custom code, set ``config.processor`` to path to your JS file:
 ::
@@ -403,7 +403,7 @@ The JS file is expected to be a standard Node.js module:
   }
 
 Function signatures
-^^^^^^^^^^^^^^^^^^
+%%%%%%%%%%%%%%%%%%%
 
 ``beforeRequest``
 +++++++++++++++++
@@ -437,7 +437,7 @@ Where:
 - ``next`` is the callback which must be called for the scenario to continue; it takes no arguments
 
 The ``function`` action
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 In addition to request and scenario hooks, custom functions can be called as steps in a scenario with the ``function`` action.
 ::
