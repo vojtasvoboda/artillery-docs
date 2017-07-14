@@ -25,7 +25,7 @@ Some commands take further options:
 ``run``
 #######
 
-Options for `run`:
+Options for ``run``:
 ::
 
     -o, --output <string>       Set filename of the JSON file with stats
@@ -33,6 +33,9 @@ Options for `run`:
     -e, --environment <string>  Set the environment to use (environments can be specified in the test file)
     -t, --target <string>       Set target server (overriding the one specified in the test file)
     -q, --quiet                 Turn on quiet mode (print nothing to stdout)
+    -c, --config                Load config from a separate file
+
+The ``--config`` option is useful for extracting common configuration such as environment definitions into a common file that can be reused with multiple other files containing just scenario definitions.
 
 ``quick``
 #########
