@@ -213,6 +213,19 @@ Cookies are remembered and re-used by individual virtual users. Custom cookies c
     cookie:
       saved: "tapir,sloth"
 
+Forms
+#####
+
+Use the ``form`` attribute to send a form (``application/x-www-form-urlencoded``).
+::
+
+  post:
+    url: "/order"
+    form:
+      name: "{{ name }}"
+      product_slug: "book"
+      inscription: "{{ dedication }}"
+      gift_options: "{{ gift_option }}"      
 
 TLS/SSL
 #######
