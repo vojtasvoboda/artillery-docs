@@ -249,3 +249,22 @@ You can use a ``think`` step in a flow to pause the execution of the scenario fo
 
 
 will pause for 1 second before continuing with the next request.
+
+Think times can be randomized with a ``jitter`` attribute:
+
+- ``{ "think": 5, "jitter": "20%" }`` will add or remove 20% (i.e. 1 second) to the specified think time, resulting in a think time between 4 and 6 seconds
+- ``{ "think": 5, "jitter": "2" }`` will add or remove up to 2 seconds to the specified think time, resulting in a think time between 3 and 7 seconds.
+
+**Default Jitter**
+
+``config.defaults.think.jitter`` can be set to add jitter to all thinks in all scenarios. For example:
+::
+
+  config:
+    target: "https://my.app"
+    defaults:
+      think:
+        jitter: "20%"
+        
+Will randomize all ``think`` periods by 20%.
+
