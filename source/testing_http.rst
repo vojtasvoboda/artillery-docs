@@ -92,6 +92,21 @@ POST arbitrary data:
     url: "/test"
     body: "name=hassy&occupation=software%20developer"
 
+HTTP Basic Auth
+###############
+
+HTTP Basic Auth is supported; the auth details can be sent along like this:
+
+::
+
+  post:
+    url: "/pets"
+    auth:
+      user: "username"
+      pass: "secretpassword"
+    json:
+      name: "Bluebell"
+      species: "pony"
 
 Set headers
 ###########
