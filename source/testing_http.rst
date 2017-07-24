@@ -21,7 +21,8 @@ To increase or decrease the default timeout set ``config.http.timeout`` to a num
     target: "http://my.app"
     http:
       timeout: 10 # Responses will now have to be sent within 10 seconds or the request will be aborted
-
+      
+When running tests, response times that increase steadily until reaching 120s (the default timeout setting) and timing out would usually indicate some kind of queuing in the target system.
 
 Fixed connection pool
 ---------------------
