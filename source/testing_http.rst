@@ -495,3 +495,8 @@ Where:
 - ``context`` is the virtual user's context, ``context.vars`` is a dictionary containing all defined variables
 - ``ee`` is an event emitter that can be used to communicate with Artillery
 - ``next`` is the callback which must be called for the scenario to continue; it takes no arguments
+
+Special Variables
+-----------------
+
+The ``$environment`` variable (accessible through ``context.vars.$environment``) contains the name of the environment (specified with the ``-e`` flag from the list under ``config.environments`` in the file that defines the test) and can be used to toggle specific environment-dependent behavior in custom JS functions.
