@@ -1,0 +1,208 @@
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  color: #606060;
+  font-size: 13pt;
+  line-height: 1.75em;
+}
+
+.jumbotron {
+  background-color: rgb(225, 255, 251);
+}
+
+.jumbotron h1 {
+  font-size: 30pt;
+}
+
+.jumbotron pre {
+  margin: 1em 0;
+  font-size: 110%;
+}
+
+h1, h2, h3 {
+  line-height: 1.7em;
+}
+
+h1 {
+  font-weight: 300;
+  line-height: 1.4em;
+}
+
+.header {
+  color: #fff;
+  font-size: 80%;
+  text-align: left;
+}
+
+.navbar-default {
+  font-size: 100%;
+  //background-color: rgb(79,195,236);
+  background-color: white;
+  border: 0;
+}
+
+.navbar-default .navbar-nav>li>a {
+  font-size: 12pt;
+  color: black;
+  font-weight: bold;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: rgb(123, 217, 197);
+  background: none;
+}
+
+li {
+  text-align: left;
+}
+
+footer {
+  font-size: 70%;
+  color: #999;
+  text-align: center;
+}
+
+footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.centered { text-align: center; }
+
+.hlblue { color: rgb(79,195,236); }
+.hlgreen { color: rgb(123, 217, 197); }
+.hlpurple { color: rgb(171, 126, 217); }
+.hlred { color: rgb(253, 152, 155); }
+.hlsteel { color: #999; }
+.smaller { font-size: 80%; }
+.buzz {
+  background-color: rgb(250, 246, 147);
+}
+
+.strong { font-weight: bold }
+
+#contributors {
+  list-style-type: none;
+}
+
+#contributors li {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: center;
+}
+
+#contributors li a {
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+#contributors li img {
+  display: block;
+  width: 64px;
+}
+
+.install-artillery {
+  border-radius: 3px;
+  padding: 10px 5px 5px 5px;
+  margin: 1em 0;
+  min-height: 50px;
+  font-family: 'Menlo', 'DejaVu Sans Mono', monospace;
+  font-size: 80%;
+  background-color: #333;
+  color: #0bffb0;
+  max-width: 500px;
+  display: block;
+}
+
+@keyframes blinker {
+  0% { visibility: visible; }
+  50% { visibility: hidden; }
+  100% { visibility: visible; }
+}
+.cursor {
+  animation: blinker steps(1) 500ms infinite alternate;
+  display: inline;
+  background-color: #0bffb0;
+}
+
+.green {
+  color: #6c6;
+}
+
+.bborder {
+  border-bottom: 1px dotted #999;
+  padding-bottom: 1px;
+}
+
+.tight { margin: 0; }
+
+// pro
+
+.pro-banner {
+  margin-bottom: 2em;
+}
+
+h1.pro {
+  font-size: 300%;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+h2.pro {
+  margin-top: 0;
+  font-size: 24pt;
+}
+
+h3.pro {
+  font-size: 32pt;
+  font-weight: bold;
+}
+
+.large-button {
+    display: inline-block;
+    padding: .6em 1em;
+    background-color: rgb(79,195,236);
+    color: white;
+    border: 3px solid rgb(95, 95, 95);
+    font-weight: 700;
+    font-size: 120%;
+}
+
+.large-button:hover {
+    background-color: white;
+    color: rgb(79,195,236);
+    text-decoration: none;
+}
+
+.buy-button {
+    display: inline-block;
+    padding: .6em 1em;
+    background-color: rgb(253, 152, 155);
+    color: white;
+    border: 3px solid rgb(95, 95, 95);
+    font-weight: 700;
+    font-size: 130%;
+}
+
+.buy-button:hover {
+    background-color: white;
+    color: rgb(253, 152, 155);
+    text-decoration: none;
+}
+
+.lb-green {
+    background-color: rgb(123, 217, 197);
+}
+
+.lb-green:hover {
+    color: rgb(123, 217, 197);
+}
+
+ul.features li {
+    margin-bottom: 1.2em;
+}
+
+.mono {
+    font-family: Courier, "Courier New", monospace;
+    background: none;
+}

@@ -1,0 +1,22 @@
+machine:
+  python:
+    version: 2.7.2
+  environment:
+    PATH: "/usr/local/bin:${PATH}"
+dependencies:
+  cache_directories:
+    - "~/.apt-cache"
+  pre:
+    - sudo rm -rf /var/cache/apt/archives && sudo ln -s ~/.apt-cache /var/cache/apt/archives && mkdir -p ~/.apt-cache/partial
+    - pip install --upgrade pip
+    - pip install mkdocs
+    - pip install s3cmd
+test:
+  override:
+    - make build
+deployment:
+  production:
+    branch: mkdocs
+    commands:
+      - cp .s3cfg ~/.s3cfg
+      - make deploy

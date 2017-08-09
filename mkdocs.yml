@@ -1,0 +1,16 @@
+site_name: Artillery.io Docs
+
+theme: null
+theme_dir: cinder_artillery
+
+pages:
+  - Welcome: index.md
+  - Getting Started: getting-started.md
+  - Basic Concepts: basic-concepts.md
+  - Script Reference: script-reference.md
+  - CLI Reference: cli-reference.md
+  - HTTP Referene: http-reference.md
+  - Socket.io Reference: socketio-reference.md
+  - WebSocket Reference: ws-reference.md
+
+google_analytics: ['UA-63690836-1', 'auto']

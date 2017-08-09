@@ -6,7 +6,7 @@ set -euxo pipefail
 : "${AWS_SECRET_ACCESS_KEY?Needed to auth with AWS}"
 : "${AWS_S3_BUCKET?Need to know where files should go}"
 
-pushd build/html
+pushd site
 
 if [[ ! -f index.html ]]
 then
