@@ -81,7 +81,7 @@ artillery run hello.yml
 
 As Artillery runs the test, you should see something like this printed to your terminal:
 
-`text
+```text
 artillery run hello.yml
 
 Phase 0 started - duration: 30s
@@ -89,7 +89,7 @@ title = Welcome to the Artillery documentation! &mdash; Artillery 2 documentatio
 title = Welcome to the Artillery documentation! &mdash; Artillery 2 documentation
 title = Welcome to the Artillery documentation! &mdash; Artillery 2 documentation
 title = Welcome to the Artillery documentation! &mdash; Artillery 2 documentation
-`
+```
 
 Followed by:
 
