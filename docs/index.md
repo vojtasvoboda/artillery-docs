@@ -43,6 +43,3 @@ For an occasional update on what we're up to, follow us on Twitter.
 Star Artillery.io on Github to be able to find it quickly later.
 
 <a class="github-button" href="https://github.com/shoreditch-ops/artillery" data-style="small" data-count-href="/shoreditch-ops/artillery/stargazers" data-count-api="/repos/shoreditch-ops/artillery#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star shoreditch-ops/artillery on GitHub">Star</a>
-
-<!-- Place this tag right after the last button or just before your close body tag. -->
-<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
