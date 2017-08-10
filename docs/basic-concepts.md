@@ -47,38 +47,30 @@ The Artillery script for the ecommerce example above would look like this:
 config:
   target: "https://staging1.local"
   phases:
-    -
-      duration: 60
+    - duration: 60
       arrivalRate: 5
-    -
-      duration: 120
+    - duration: 120
       arrivalRate: 5
       rampTo: 50
-    -
-      duration: 600
+    - duration: 600
       arrivalRate: 50
   payload:
     path: "keywords.csv"
     fields:
       - "keywords"
 scenarios:
-  -
-    name: "Search and buy"
+  - name: "Search and buy"
     flow:
-      -
-        post:
+      - post:
           url: "/search"
           body: "kw={{ keywords }}"
           capture:
             json: "$.results[0].id"
             as: "id"
-      -
-        get:
+      - get:
           url: "/details/{{ id }}"
-      -
-        think: 3
-      -
-        post:
+      - think: 3
+      - post:
           url: "/cart"
           json:
             productId: "{{ id }}"
