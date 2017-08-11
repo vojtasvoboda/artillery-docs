@@ -72,7 +72,7 @@ config:
   target: "https://staging.example.com"
   phases:
     - duration: 60
-      arrivalRate: 20
+      arrivalCount: 20
 ```
 
 ##### A do-nothing `pause` phase
