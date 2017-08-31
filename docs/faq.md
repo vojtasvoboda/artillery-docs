@@ -8,7 +8,7 @@ This section answers some of the common questions about Artillery and its usage.
 
 Artillery will monitor its own CPU usage and print warnings when that exceeds 80%.
 
-As a rule of thumb, Node.js processes should never be allowed to go anywhere near max CPU usage. At high CPU loads, Node.js event loop will be competing with the V8 garbage collector over CPU time, which will only degrade performance further. The impact of that on your tests is inaccurate results - fewer virtual users than requested may be launched, and latency reports will certainly become skewed and measured inaccurately.
+Artillery is written in [Node.js](https://nodejs.org/en/). As a rule of thumb, Node.js processes should never be allowed to go anywhere near max CPU usage. That's due to how Node.js works under the hood. At high CPU loads, Node.js event loop will be competing with the V8 garbage collector over CPU time, which will cause further performance degradation. The impact of that on your tests is inaccurate results - fewer virtual users than requested may be launched, and latency reports will be skewed as it measurements will be affected by event loop lag.
 
 #### Common causes
 
