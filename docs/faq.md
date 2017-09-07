@@ -33,7 +33,7 @@ If your tests use custom JS code, there may be CPU-heavy hotspots in one of the 
 
 **Reduce `arrivalRate` values**
 
-Bear in mind that a given `arrivalRate` does **not** directly correspond to requests sent per second. If you need to send a large number of requests over a single connection, use the `loop` action. If you're testing an HTTP server and don't need a new TCP connection for each new virtual user, use the [`pool` config option](http://localhost:8000/http-reference/#fixed-connection-pool).
+Bear in mind that a given `arrivalRate` does **not** directly correspond to requests sent per second. If you need to send a large number of requests over a single connection, use the `loop` action. If you're testing an HTTP server and don't need a new TCP connection for each new virtual user, use the [`pool` config option](/docs/http-reference/#fixed-connection-pool).
 
 **Profile and optimize custom JS code**
 
