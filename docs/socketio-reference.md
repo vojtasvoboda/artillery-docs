@@ -4,6 +4,53 @@
 
 ## Socket.io-specific configuration
 
+### Query
+
+[Query parameters](https://socket.io/docs/client-api/#with-query-parameters) can be specified as a string or as a dictionary:
+
+```yaml
+config:
+  target: "https://myapp.staging:3002"
+  socketio:
+    query: "user_id=0xc0ffee&color=blue"
+```
+
+or:
+
+```yaml
+config:
+  target: "https://myapp.staging:3002"
+  socketio:
+    query:
+      user_id: "0xc0fee"
+      color: "blue"
+```
+
+### Path
+
+[A custom path](https://socket.io/docs/client-api/#with-custom-path) may be set.
+
+In this example the virtual users will connect to the `admin` namespace with the custom path `mypath`.
+
+```yaml
+config:
+  target: "https://myapp.staging:3002/admin"
+  socketio:
+    query:
+      path: "/mypath"
+```
+
+### Transports
+
+You can [skip long-polling](https://socket.io/docs/client-api/#with-websocket-transport-only) and specify that a websocket transport be used straightaway:
+
+```yaml
+config:
+  target: "https://myapp.staging:3002/admin"
+  socketio:
+    transports: ["websocket"]
+```
+
 ## Flow actions
 
 The Socket.io engine allows for [HTTP actions](http-reference/#flow-actions) actions to be used in scenarios alongside ``emit``, which is the main Socket.io action.
