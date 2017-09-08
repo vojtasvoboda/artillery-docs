@@ -149,3 +149,20 @@ HTTP and Socket.io actions can be combined in the same scenario (a common scenar
             data: "still do not care about the response"
         - think: 1
 ```
+
+
+### Example: Connecting Without Sending Data
+
+You can use `think` to emulate clients connecting to the app and listening without sending anything themselves.
+
+```yaml
+config:
+  target: "http://127.0.0.1:9092"
+  phases:
+    - duration: 3600
+      arrivalRate: 5
+scenarios:
+  - engine: "socketio"
+    flow:
+      - think: 600 # do nothing for 10m and disconnect
+```
