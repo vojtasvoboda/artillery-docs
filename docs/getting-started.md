@@ -28,9 +28,9 @@ You are ready to run your first load test now!
 
 Artillery has a `quick` command which allows you to use it for ad-hoc testing (in a manner similar to `ab`). Run:
 
-`bash
+```bash
 artillery quick --count 10 -n 20 https://artillery.io/
-`
+```
 
 This command will create 10 "virtual users" each of which will send 20 HTTP `GET` requests to `https://artillery.io/`.
 
@@ -75,9 +75,9 @@ We also set an `x-my-service-auth` header to be sent with every request.
 
 Run the test with:
 
-`bash
+```bash
 artillery run hello.yml
-`
+```
 
 As Artillery runs the test, you should see something like this printed to your terminal:
 
