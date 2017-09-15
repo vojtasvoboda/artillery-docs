@@ -29,7 +29,8 @@ To increase or decrease the default timeout set ``config.http.timeout`` to a num
 config:
   target: "http://my.app"
   http:
-    timeout: 10 # Responses will now have to be sent within 10 seconds or the request will be aborted
+    # Responses have to be sent within 10 seconds or the request will be aborted
+    timeout: 10
 ```
 
 ### Fixed connection pool
@@ -119,6 +120,37 @@ Arbitrary headers may be sent with:
     headers:
       X-My-Header: "123"
 ```
+
+### Forms
+
+#### URL-encoded forms (`application/x-www-form-urlencoded`)
+
+Use the `form` attribute to send an [URL-encoded form](https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1).
+
+```yaml
+- post:
+    url: "/upload"
+    form:
+      name: "Homer Simpson"
+      favorite_food: "donuts"
+```
+
+#### Multipart form uploads (`multipart/form-data`)
+
+Use the `formData` attribute to send a [`multipart/form-data` form](https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.2) (forms containing files, non-ASCII data, and binary data).
+
+```yaml
+- post:
+    url: "/upload"
+    formData:
+      name: "Homer Simpson"
+      favorite_food: "donuts"
+```
+
+To attach binary data [a custom JS function](#advanced-writing-custom-logic-in-javascript) can be used.
+
+<p class="smaller" style="color: #818181; margin-top: 2em; border: 1px solid #eee; padding: 0.5em 1em; border-radius: 1em;"> <i class="hlblue fa fa-info-circle" aria-hidden="true"></i> First-class file upload support is also provided by <a href="/pro/">Artillery Pro</a> for teams requiring extensive file uploading functionality in their tests.</p>
+
 
 ### Extracting and reusing parts of a response (request chaining)
 
