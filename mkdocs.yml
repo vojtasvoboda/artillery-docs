@@ -13,5 +13,6 @@ pages:
   - Socket.io Reference: socketio-reference.md
   - WebSocket Reference: ws-reference.md
   - FAQ: faq.md
+  - Artillery Pro: pro.md
 
 google_analytics: ['UA-63690836-1', 'auto']
