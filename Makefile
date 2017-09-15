@@ -1,4 +1,7 @@
-.PHONY: build deploy
+.PHONY: build deploy serve
+
+serve:
+	mkdocs serve
 
 build:
 	mkdocs build
