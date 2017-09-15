@@ -45,6 +45,12 @@ config:
 
 This can be useful to emulate the conditions when the target would normally be behind a load-balancer and would have a fixed number of connections established at any given time.
 
+### Max sockets per virtual user
+
+By default Artillery creates one TCP connection per virtual user. To allow for multiple sockets per virtual user (to mimic the behavior of a web browser for example), the `config.http.maxSockets` option may be set.
+
+**Note:** this setting is per virtual user, not for the total number of sockets. To limit the total number of sockets, use the `pool` setting.
+
 ## Flow actions
 
 ### GET / POST / PUT / PATCH / DELETE requests
