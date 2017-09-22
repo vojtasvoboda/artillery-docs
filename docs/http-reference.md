@@ -288,6 +288,30 @@ In the following example 3 requests would be made, one for each product ID:
      - id789
 ```
 
+### (Experimental) Looping with custom logic
+
+Let's say we want to poll an endpoint until it returns a JSON response with the top-level `status` attribute set to `"ready"`:
+
+```yaml
+- loop:
+    - think: 5
+    - get:
+        url: "/some/endpoint"
+        capture:
+          - json: $.status
+            as: "status"
+  whileTrue: "myFunction"
+```
+
+```javascript
+function myFunction(context, next) {
+  const continueLooping = context.vars.status !== 'ready';
+  return next(continueLooping); // call back with true to loop again
+}
+```
+
+**NOTE:** `whileTrue` true takes precendence over `count` and `over` attributes if either of those is specified.
+
 ## Advanced: writing custom logic in Javascript
 
 The HTTP engine has support for "hooks", which allow for custom JS functions to be called at certain points during the execution of a scenario.
