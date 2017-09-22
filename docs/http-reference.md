@@ -272,6 +272,22 @@ You can use the ``loop`` construct to loop through a number of requests in a sce
 
 The current step of the loop is available inside a loop through the ``$loopCount`` variable (for example going from 1 too 100 in the example above).
 
+### Looping through an array
+
+Looping through an array can be done by setting the `over` property to a literal array or the name of the variable containing an array of values.
+
+In the following example 3 requests would be made, one for each product ID: 
+
+```yaml
+- loop:
+    - get:
+         url: "/products/{{ $loopElement }}"
+   over:
+     - id123
+     - id456
+     - id789
+```
+
 ## Advanced: writing custom logic in Javascript
 
 The HTTP engine has support for "hooks", which allow for custom JS functions to be called at certain points during the execution of a scenario.
