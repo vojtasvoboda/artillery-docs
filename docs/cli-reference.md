@@ -29,7 +29,20 @@ Options for `run`:
 -e, --environment <string>  Set the environment to use (environments can be specified in the test file)
 -t, --target <string>       Set target server (overriding the one specified in the test file)
 -q, --quiet                 Turn on quiet mode (print nothing to stdout)
+--overrides <JSON>          Override parts of the test script
 ```
+
+### (Experimental) `--overrides`
+
+This option can be used to override parts of the test script from the command line.
+
+For example, we can override the phase definitions in the test script with:
+
+```
+artillery run --overrides '{"config": {"phases": [{"duration": 10, "arrivalRate": 1}]}}' script.yaml
+```
+
+**Note:** The argument must be valid JSON.
 
 ## `quick`
 
