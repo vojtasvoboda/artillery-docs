@@ -150,6 +150,28 @@ config:
 
 Once configured, all requests will use the provided key and certificate for authentication.
 
+You can provide a password for the key with the `passphrase` option:
+
+```
+config:
+  target: "https://example.com"
+  tls:
+    # useful for testing, should not be used in production:
+    rejectUnauthorized: false
+    #
+    # Specify client key and certificate:
+    #
+    client:
+      key: "./client-key.pem"
+      cert: "./client-crt.pem"
+      passphrase: "mysecretpassword"
+  #
+  # Enable the plugin:
+  #
+  plugins:
+    http-ssl-auth: {}
+```
+
 To specify that a request should **not** use SSL client auth, set `sslAuth` to `false`:
 
 ```yaml
