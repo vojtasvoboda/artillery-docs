@@ -14,6 +14,8 @@ npm install -g artillery-pro
 
 <i class="fa fa-info-circle" aria-hidden="true"></i> You need to have Artillery installed first. If you don't have it installed already, run `npm install -g artillery`
 
+<i class="fa fa-exclamation-circle" aria-hidden="true"></i> **NOTE**: Artillery Pro should work with Node.js `v4+` but Node.js `v6.x` (the LTS release) is the recommended and officially supported version.
+
 ### Activate
 
 Artillery Pro needs to be activated before use:
