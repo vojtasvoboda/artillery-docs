@@ -175,12 +175,12 @@ Payload files are in the CSV format and Artillery allows you to map each of the 
         - "username"
         - "password"
   scenarios:
-    -
-      post:
-        url: "/auth"
-        json:
-          username: "{{ username }}"
-          password: "{{ password }}"
+    - flow:
+        - post:
+            url: "/auth"
+            json:
+              username: "{{ username }}"
+              password: "{{ password }}"
 ```
 
 We tell Artillery to load `users.csv` file and make variables `username` and `password` available in scenarios containing values from one of the rows in the CSV file
