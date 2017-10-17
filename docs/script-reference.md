@@ -144,6 +144,22 @@ scenarios:
 
 Choose an environment on the command line with the `-e` flag; e.g. `artillery run -e staging my-script.yml`.
 
+#### The `$environment` variable
+
+The name of the current environment (if set) is available in the `$environment` variable.
+
+Example - printing the name of the current environment from a scenario:
+
+```yaml
+config:
+  #
+  # config here
+  #
+scenarios:
+  - flow:
+    - log: "Current environment is set to: {{ $environment }}"
+```
+
 ### Payload Files
 
 In some cases it is useful to be able to inject data from external files into your test scenarios. For example, you might have a list of usernames and passwords that you want to use to test the auth endpoint in your API.
