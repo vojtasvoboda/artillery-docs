@@ -66,8 +66,10 @@ The ``emit`` action supports the following attributes:
     - ``data`` - the data to verify is in the response
 4. ``namespace`` - optional namespace that this action executes in
 
-**Note:**
-If you emit to a specific namespace, the response data is expected within the same namespace.
+**Notes:**
+
+- `data` can only be a single value; multiple arguments are not yet supported
+- If you emit to a specific namespace, the response data is expected within the same namespace.
 
 #### Example
 
