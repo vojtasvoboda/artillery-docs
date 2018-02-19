@@ -52,6 +52,20 @@ By default Artillery creates one TCP connection per virtual user. To allow for m
 
 **Note:** this setting is per virtual user, not for the total number of sockets. To limit the total number of sockets, use the `pool` setting.
 
+### Proxies
+
+To send requests through a proxy, set the `HTTP_PROXY` or `HTTPS_PROXY` environment variable when running Artillery.
+
+```sh
+HTTPS_PROXY='http://user:password@myproxy.local' artillery run my_script.yml
+```
+
+If your test sends requests to more than one host and you want to exclude requests to some of those from being proxied, set the `NO_PROXY` environment variable to a comma-separated list of hosts to opt out of proxying.
+
+```sh
+NO_PROXY=github.com HTTPS_PROXY='http://user:password@myproxy.local' artillery run my_script.yml
+```
+
 ## Flow actions
 
 ### GET / POST / PUT / PATCH / DELETE requests
