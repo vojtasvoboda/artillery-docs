@@ -4,7 +4,7 @@ Artillery is a modern, powerful & easy-to-use load testing toolkit. Use it to ma
 
 If you’re new to Artillery, [Getting Started](getting-started) is a good place to start, followed by an overview of [how Artillery works](basic-concepts). When you’re writing your tests, the various references ([HTTP](http-reference), [Socket.io](socketio-reference), [WebSockets](ws-reference), the [CLI](cli-reference)) will come in handy.
 
-When you're ready to take your load testing to the next level, run distributed tests from AWS and integrate performance with CI/CD, [Artillery Pro](https://artillery.io/pro.html) has you covered.
+When you're ready to take your load testing to the next level, run distributed tests from AWS, and integrate performance testing with your CI/CD pipelines, [Artillery Pro](https://artillery.io/pro.html) has you covered.
 
 Happy load testing! Ship indestructible systems. 👩‍💻 🏰<!-- emojis to the left of here -->
 
