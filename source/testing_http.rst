@@ -454,7 +454,7 @@ Where:
 
 A function invoked in an ``afterResponse`` hook should have the following signature:
 ::
-  function myAfterResponseHandler(requestParams, reponse, context, ee, next) {
+  function myAfterResponseHandler(requestParams, response, context, ee, next) {
   }
 
 Where:
